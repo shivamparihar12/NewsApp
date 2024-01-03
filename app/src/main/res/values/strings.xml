@@ -7,4 +7,5 @@
     <string name="headlines">Headlines</string>
     <string name="search">Search</string>
     <string name="search_news">Search news...</string>
+    <string name="bookmarks">BookMarks</string>
 </resources>

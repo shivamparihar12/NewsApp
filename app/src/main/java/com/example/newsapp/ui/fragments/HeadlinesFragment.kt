@@ -2,7 +2,6 @@ package com.example.newsapp.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AbsListView
@@ -36,8 +35,6 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHeadlinesBinding.bind(view)
 
-        newsViewModel = (activity as MainActivity).newsViewModel
-
         itemHeadlinesError = view.findViewById(R.id.itemHeadlinesError)
 
         val inflater =
@@ -52,15 +49,15 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putSerializable("Article", it)
+                putSerializable("article", it)
             }
-            findNavController().navigate(R.id.action_headlinesFragment2_to_articleFragment, bundle)
+            findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment, bundle)
         }
 
         newsViewModel.headlines.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success<*> -> {
-                    hideMessageBar()
+                    hideErrorMessage()
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
@@ -106,7 +103,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
         isLoading = true
     }
 
-    private fun hideMessageBar() {
+    private fun hideErrorMessage() {
         itemHeadlinesError.visibility = View.INVISIBLE
         isError = false
     }

@@ -7,9 +7,9 @@
         android:icon="@drawable/baseline_headlins_24"
         android:title="@string/headlines" />
     <item
-        android:id="@+id/bookmarks"
+        android:id="@+id/bookmarkFragment"
         android:icon="@drawable/baseline_bookmarks_24"
-        android:title="BookMarks" />
+        android:title="@string/bookmarks" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/baseline_search_24"

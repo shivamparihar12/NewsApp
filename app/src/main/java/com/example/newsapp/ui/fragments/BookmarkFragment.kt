@@ -71,8 +71,9 @@ class BookmarkFragment : Fragment(R.layout.fragment_bookmark) {
     }
 
     private fun setupBookmarkRecycler() {
+        newsAdapter=NewsAdapter()
         binding.bookmarksRecyclerview.apply {
-            newsAdapter = newsAdapter
+            adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }

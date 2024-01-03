@@ -31,8 +31,10 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         }
 
         binding.fabAddToBookmark.setOnClickListener {
-            newsViewModel.addToFavourites(article)
-            Snackbar.make(view, "Added to favourite", Snackbar.LENGTH_SHORT).show()
+            if (article.url.isNotEmpty()) {
+                newsViewModel.addToFavourites(article)
+                Snackbar.make(view, "Added to favourite", Snackbar.LENGTH_SHORT).show()
+            }
         }
     }
 }

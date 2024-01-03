@@ -74,7 +74,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             }
         }
 
-        newsViewModel.headlines.observe(viewLifecycleOwner, Observer { response ->
+        newsViewModel.searchNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success<*> -> {
                     hideErrorMessage()
@@ -82,7 +82,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     response.data?.let { newsResponse ->
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.totalResults / Constants.QUERY_PAGE_SIZE + 2
-                        isLastPage = newsViewModel.headlinesPage == totalPages
+                        isLastPage = newsViewModel.searchNewsPage == totalPages
                         if (isLastPage) {
                             binding.recyclerSearch.setPadding(0, 0, 0, 0)
                         }
